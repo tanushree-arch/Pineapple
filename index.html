@@ -1,0 +1,2854 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mission Pineapple</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+
+<style>
+/* =====================================================
+   THREE-CAT INSTRUCTION
+===================================================== */
+
+.cats-click-instruction {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+
+    text-align: center;
+
+    font-family: "Caveat", cursive;
+    font-size: clamp(24px, 3vw, 36px);
+
+    color: #b94f70;
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   FLOWER PAGE
+===================================================== */
+
+.flower-page {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    z-index: 5000;
+
+    background:
+        radial-gradient(
+            circle at 15% 12%,
+            rgba(255,255,255,.72),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(255,171,199,.38),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #f9dce5 0%,
+            #f5c8d6 48%,
+            #fae7ec 100%
+        );
+
+    color: #632d3d;
+}
+
+
+.flower-page.active {
+    display: block !important;
+}
+
+
+.flower-back {
+    position: fixed !important;
+
+    top: 20px !important;
+    left: 24px !important;
+
+    z-index: 20 !important;
+}
+
+
+.flower-page-content {
+    width: min(1180px, 100%);
+
+    margin: 0 auto;
+
+    padding: 60px 28px 50px;
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 5;
+}
+
+
+.flower-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 30px 22px;
+
+    align-items: end;
+}
+
+
+.flower-card {
+    min-width: 0;
+
+    text-align: center;
+
+    animation:
+        flowerCardIn
+        .9s
+        ease
+        both;
+}
+
+
+.flower-card:nth-child(1) {
+    grid-column: span 2;
+    animation-delay: .05s;
+}
+
+
+.flower-card:nth-child(2) {
+    grid-column: span 2;
+    animation-delay: .18s;
+}
+
+
+.flower-card:nth-child(3) {
+    grid-column: span 2;
+    animation-delay: .31s;
+}
+
+
+.flower-card:nth-child(4) {
+    grid-column: 2 / span 2;
+    animation-delay: .44s;
+}
+
+
+.flower-card:nth-child(5) {
+    grid-column: 4 / span 2;
+    animation-delay: .57s;
+}
+
+
+@keyframes flowerCardIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+.flower-holder {
+    height: 315px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: center;
+}
+
+
+.flower-image {
+    display: block;
+
+    max-width: 100%;
+    max-height: 305px;
+
+    width: auto;
+
+    object-fit: contain;
+
+    transform-origin: bottom center;
+
+    filter:
+        drop-shadow(
+            0 15px 14px
+            rgba(91,34,51,.15)
+        );
+
+    animation:
+        flowerFloat
+        4.6s
+        ease-in-out
+        infinite;
+
+    transition:
+        transform .35s ease,
+        filter .35s ease;
+}
+
+
+.flower-card:nth-child(2) .flower-image {
+    animation-delay: -.8s;
+}
+
+
+.flower-card:nth-child(3) .flower-image {
+    animation-delay: -1.6s;
+}
+
+
+.flower-card:nth-child(4) .flower-image {
+    animation-delay: -2.4s;
+}
+
+
+.flower-card:nth-child(5) .flower-image {
+    animation-delay: -3.2s;
+}
+
+
+.flower-image:hover {
+    transform:
+        scale(1.06)
+        rotate(-1deg);
+
+    filter:
+        drop-shadow(
+            0 21px 18px
+            rgba(91,34,51,.22)
+        );
+}
+
+
+@keyframes flowerFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-9px)
+            rotate(.8deg);
+    }
+
+}
+
+
+.flower-caption {
+    width: fit-content;
+
+    max-width: 270px;
+
+    margin: 13px auto 0;
+
+    padding: 12px 19px;
+
+    border:
+        1px solid
+        rgba(170,73,99,.22);
+
+    background:
+        rgba(255,248,244,.88);
+
+    box-shadow:
+        0 7px 16px
+        rgba(92,36,53,.08);
+
+    color: #713143;
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 22px;
+
+    line-height: 1.05;
+
+    transform: rotate(-1deg);
+}
+
+
+.flower-card:nth-child(even) .flower-caption {
+    transform: rotate(1deg);
+}
+
+
+.flower-lyrics-wall {
+    width: min(850px, 100%);
+
+    margin:
+        62px auto 38px;
+
+    padding: 20px;
+
+    border-top:
+        1px solid
+        rgba(150,58,80,.18);
+
+    border-bottom:
+        1px solid
+        rgba(150,58,80,.18);
+
+    overflow: hidden;
+}
+
+
+.flower-lyrics-wall span {
+    display: inline-block;
+
+    color: #c85073;
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size: 38px;
+
+    animation:
+        flowerLyricMove
+        4.5s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes flowerLyricMove {
+
+    0%,
+    100% {
+        transform:
+            translateX(0)
+            rotate(-2deg);
+    }
+
+    50% {
+        transform:
+            translateX(12px)
+            rotate(2deg);
+    }
+
+}
+
+
+.flower-final-message {
+    width: min(850px, 100%);
+
+    margin: 0 auto;
+
+    padding:
+        0 18px 45px;
+
+    color: #c55072;
+
+    font-family:
+        "Caveat",
+        cursive;
+
+    font-size:
+        clamp(27px, 3.4vw, 42px);
+
+    line-height: 1.1;
+}
+
+
+.flower-petal-layer {
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+
+.flower-petal-layer span {
+    position: absolute;
+
+    top: -25px;
+
+    width: 9px;
+    height: 15px;
+
+    border-radius:
+        100% 0 100% 0;
+
+    background:
+        rgba(225,92,132,.32);
+
+    animation:
+        flowerPetalFall
+        9s
+        linear
+        infinite;
+}
+
+
+.flower-petal-layer span:nth-child(1) {
+    left: 7%;
+    animation-delay: -2s;
+}
+
+
+.flower-petal-layer span:nth-child(2) {
+    left: 19%;
+    animation-delay: -5s;
+    animation-duration: 11s;
+}
+
+
+.flower-petal-layer span:nth-child(3) {
+    left: 34%;
+    animation-delay: -1s;
+    animation-duration: 10s;
+}
+
+
+.flower-petal-layer span:nth-child(4) {
+    left: 49%;
+    animation-delay: -7s;
+    animation-duration: 12s;
+}
+
+
+.flower-petal-layer span:nth-child(5) {
+    left: 64%;
+    animation-delay: -4s;
+}
+
+
+.flower-petal-layer span:nth-child(6) {
+    left: 77%;
+    animation-delay: -8s;
+    animation-duration: 13s;
+}
+
+
+.flower-petal-layer span:nth-child(7) {
+    left: 88%;
+    animation-delay: -3s;
+    animation-duration: 10s;
+}
+
+
+.flower-petal-layer span:nth-child(8) {
+    left: 95%;
+    animation-delay: -6s;
+    animation-duration: 12s;
+}
+
+
+@keyframes flowerPetalFall {
+
+    0% {
+        transform:
+            translateY(-30px)
+            translateX(0)
+            rotate(0);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .7;
+    }
+
+    50% {
+        transform:
+            translateY(50vh)
+            translateX(35px)
+            rotate(180deg);
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            translateX(-30px)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .flower-page-content {
+        padding:
+            55px 16px 35px;
+    }
+
+
+    .flower-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap:
+            30px 12px;
+    }
+
+
+    .flower-card:nth-child(1),
+    .flower-card:nth-child(2),
+    .flower-card:nth-child(3),
+    .flower-card:nth-child(4) {
+        grid-column: span 1;
+    }
+
+
+    .flower-card:nth-child(5) {
+        grid-column: 1 / -1;
+    }
+
+
+    .flower-holder {
+        height: 245px;
+    }
+
+
+    .flower-image {
+        max-height: 235px;
+    }
+
+
+    .flower-caption {
+        font-size: 19px;
+
+        padding:
+            10px 12px;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .flower-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .flower-card:nth-child(1),
+    .flower-card:nth-child(2),
+    .flower-card:nth-child(3),
+    .flower-card:nth-child(4),
+    .flower-card:nth-child(5) {
+        grid-column: 1;
+    }
+
+
+    .flower-holder {
+        height: 285px;
+    }
+
+
+    .flower-image {
+        max-height: 275px;
+    }
+
+}
+
+
+/* =====================================================
+   LAST CAT / ME PAGE
+===================================================== */
+
+#catPage3.last-message-page {
+    position: fixed !important;
+
+    inset: 0 !important;
+
+    z-index: 5000 !important;
+
+    display: none;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(255,255,255,.72),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #f8dce5 0%,
+            #f3c5d3 50%,
+            #fbe8ed 100%
+        );
+}
+
+
+#catPage3.last-message-page.active {
+    display: block !important;
+}
+
+
+.last-page-content {
+    width: min(1120px, 92%);
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    padding:
+        70px 20px 60px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(280px, 420px)
+        minmax(0, 1fr);
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap:
+        clamp(45px, 7vw, 100px);
+}
+
+
+.last-page-photo {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.last-page-photo img {
+    display: block;
+
+    width:
+        min(390px, 100%);
+
+    max-height: 650px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 20px 25px
+            rgba(105,45,65,.18)
+        );
+
+    animation:
+        lastPagePhotoFloat
+        5s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes lastPagePhotoFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(-1deg);
+    }
+
+    50% {
+        transform:
+            translateY(-10px)
+            rotate(1deg);
+    }
+
+}
+
+
+.last-page-message {
+    max-width: 650px;
+}
+
+
+.last-page-eyebrow {
+    margin:
+        0 0 14px;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    color: #a24d66;
+}
+
+
+.last-page-message h2 {
+    margin: 0;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size:
+        clamp(52px, 6vw, 78px);
+
+    line-height: .92;
+
+    font-weight: 500;
+
+    color: #633541;
+}
+
+
+.last-page-message h2 em {
+    color: #c25573;
+}
+
+
+.last-page-message .cat-line {
+    width: 145px;
+
+    height: 1px;
+
+    margin:
+        24px 0 28px;
+
+    background:
+        rgba(162,77,102,.35);
+}
+
+
+.last-page-list {
+    margin: 0;
+
+    padding-left: 30px;
+
+    color: #6c3a49;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size:
+        clamp(16px, 1.55vw, 20px);
+
+    line-height: 1.5;
+
+    list-style-position: outside;
+}
+
+
+.last-page-list li {
+    padding-left: 7px;
+
+    margin-bottom: 12px;
+}
+
+
+.last-page-list li::marker {
+    color: #c25573;
+
+    font-weight: 700;
+}
+
+
+@media (max-width: 760px) {
+
+    .last-page-content {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+        padding-top: 75px;
+
+        text-align: center;
+    }
+
+
+    .last-page-photo img {
+        width:
+            min(300px, 75vw);
+
+        max-height: 390px;
+    }
+
+
+    .last-page-message {
+        margin: 0 auto;
+    }
+
+
+    .last-page-message .cat-line {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .last-page-list {
+        text-align: left;
+    }
+
+}
+
+</style>
+
+
+<style id="cake-only-fix">
+/* =========================================================
+   CAKE PAGE ONLY
+   Do not alter the rest of the website.
+========================================================= */
+
+#cakePage {
+    position: fixed !important;
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    z-index: 10000 !important;
+
+    display: none !important;
+
+    overflow: hidden !important;
+
+    box-sizing: border-box !important;
+}
+
+#cakePage.active {
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Put the entire cake composition in the exact center
+   of the viewport. */
+#cakePage .cake-content {
+    position: relative !important;
+
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+
+    width: min(1000px, 92vw) !important;
+    max-width: 1000px !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 auto !important;
+    padding: 20px !important;
+
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    text-align: center !important;
+
+    transform: none !important;
+}
+
+/* Reset any old positioning on the cake elements. */
+#cakePage .cake-small-title,
+#cakePage h2,
+#cakePage .cake-line,
+#cakePage .cake-image-wrap,
+#cakePage .cake-image,
+#cakePage .blow-button,
+#cakePage .blow-note {
+    position: relative !important;
+
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+
+    transform: none !important;
+}
+
+#cakePage .cake-small-title {
+    width: 100% !important;
+    margin: 0 auto 10px !important;
+    text-align: center !important;
+}
+
+#cakePage h2 {
+    width: 100% !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+}
+
+#cakePage .cake-line {
+    margin: 15px auto !important;
+}
+
+#cakePage .cake-image-wrap {
+    width: min(460px, 70vw) !important;
+    max-width: 460px !important;
+
+    height: auto !important;
+
+    margin: 0 auto 10px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#cakePage .cake-image {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 460px !important;
+
+    height: auto !important;
+    max-height: 45vh !important;
+
+    object-fit: contain !important;
+
+    margin: 0 auto !important;
+
+    pointer-events: none !important;
+}
+
+/* IMPORTANT: Blow must be above the cake and clickable. */
+#cakePage .blow-button {
+    position: relative !important;
+
+    z-index: 10002 !important;
+
+    display: inline-flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    margin: 8px auto 0 !important;
+
+    pointer-events: auto !important;
+
+    cursor: pointer !important;
+}
+
+#cakePage .blow-note {
+    position: relative !important;
+
+    z-index: 10001 !important;
+
+    width: 100% !important;
+
+    margin: 8px auto 0 !important;
+
+    text-align: center !important;
+
+    pointer-events: none !important;
+}
+
+/* Decorative flowers/hearts cannot cover the button. */
+#cakePage .cake-decoration {
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+/* Back button remains clickable. */
+#cakePage .cake-back {
+    z-index: 10003 !important;
+    pointer-events: auto !important;
+}
+
+@media (max-width: 800px) {
+    #cakePage .cake-content {
+        width: 94vw !important;
+        padding: 12px !important;
+    }
+
+    #cakePage .cake-image-wrap {
+        width: min(420px, 82vw) !important;
+    }
+
+    #cakePage .cake-image {
+        max-height: 43vh !important;
+    }
+}
+
+@media (max-height: 760px) {
+    #cakePage .cake-content {
+        padding-top: 8px !important;
+        padding-bottom: 10px !important;
+    }
+
+    #cakePage .cake-small-title {
+        margin-bottom: 4px !important;
+    }
+
+    #cakePage .cake-line {
+        margin-top: 7px !important;
+        margin-bottom: 7px !important;
+    }
+
+    #cakePage .cake-image-wrap {
+        width: min(400px, 55vw) !important;
+        margin-bottom: 3px !important;
+    }
+
+    #cakePage .cake-image {
+        max-height: 40vh !important;
+    }
+
+    #cakePage .blow-button {
+        margin-top: 4px !important;
+    }
+
+    #cakePage .blow-note {
+        margin-top: 4px !important;
+    }
+}
+</style>
+
+
+<style id="cake-note-navigation-fix">
+/* =========================================================
+   BLOW -> BIRTHDAY NOTE
+   Keep the existing cake design; only fix navigation.
+========================================================= */
+
+#birthdayNotePage {
+    position: fixed !important;
+    inset: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    z-index: 10001 !important;
+
+    display: none !important;
+}
+
+#birthdayNotePage.active {
+    display: block !important;
+}
+
+#birthdayNotePage .noteBackButton,
+#birthdayNotePage #noteBackButton {
+    z-index: 10005 !important;
+    pointer-events: auto !important;
+}
+</style>
+
+
+<style id="cat-back-no-reset-fix">
+/* Keep the three-cat chapter as its own chapter.
+   These pages must not navigate back to the slideshow. */
+#catsPage {
+    position: relative;
+}
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     OPENING
+===================================================== -->
+
+<section id="openingScreen" class="opening-screen">
+
+    <div class="opening-content">
+
+        <p class="opening-small">
+            A LITTLE SOMETHING IN THREE PARTS
+        </p>
+
+        <h1>
+            Mission
+            <em>Pineapple.</em>
+        </h1>
+
+        <p class="opening-message">
+            For my favourite chaos.
+        </p>
+
+        <button
+            id="openButton"
+            class="open-button"
+        >
+            <span>Open Me</span>
+            <strong>→</strong>
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN WEBSITE
+===================================================== -->
+
+<main id="mainExperience" class="main-experience">
+
+
+<!-- =====================================================
+     TOP BAR
+===================================================== -->
+
+<header class="topbar">
+
+    <div class="mission-mark">
+
+        <span class="dot"></span>
+
+        <span>
+            MISSION PINEAPPLE
+        </span>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     CHAPTER I
+===================================================== -->
+
+<section id="story" class="story">
+
+    <div class="progress">
+
+        <span id="progressFill"></span>
+
+    </div>
+
+
+    <div class="slide-wrap">
+
+
+        <article class="slide active">
+
+            <div class="slide-image">
+
+                <img
+                    src="assets/slide1.jpg"
+                    alt="Memory"
+                >
+
+            </div>
+
+            <div class="slide-meta">
+
+                <span>01 / 03</span>
+
+                <span class="hand">
+                    for my one wish willow
+                </span>
+
+            </div>
+
+        </article>
+
+
+
+        <article class="slide">
+
+            <div class="slide-image">
+
+                <img
+                    src="assets/slide2.jpg"
+                    alt="Memory"
+                >
+
+            </div>
+
+            <div class="slide-meta">
+
+                <span>02 / 03</span>
+
+                <span class="hand">
+                    oops i broke it
+                </span>
+
+            </div>
+
+        </article>
+
+
+
+        <article class="slide">
+
+            <div class="slide-image">
+
+                <img
+                    src="assets/slide3.png"
+                    alt="Memory"
+                >
+
+            </div>
+
+            <div class="slide-meta">
+
+                <span>03 / 03</span>
+
+                <span class="hand">
+                    now you have been willow wished
+                </span>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <div class="story-controls">
+
+        <button
+            id="prevButton"
+            class="nav-button"
+        >
+            ←
+        </button>
+
+        <p id="slideHint">
+            The first chapter begins.
+        </p>
+
+        <button
+            id="nextButton"
+            class="nav-button"
+        >
+            →
+        </button>
+
+    </div>
+
+
+    <button
+        id="continueButton"
+        class="continue-button"
+    >
+        Continue the mission →
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     CHAPTER II — LYRICS
+===================================================== -->
+
+<section id="lyricsSection" class="lyrics-section">
+
+
+    <header class="lyrics-header">
+
+        <div class="mission-mark">
+
+            <span class="dot"></span>
+
+            <span>
+                MISSION PINEAPPLE
+            </span>
+
+        </div>
+
+        <span class="chapter-number">
+            CHAPTER II
+        </span>
+
+    </header>
+
+
+
+    <div class="lyrics-title">
+
+        <p>
+            TEN SONGS · TEN FEELINGS
+        </p>
+
+        <h2>
+            THE LYRIC WALL
+        </h2>
+
+        <div class="title-line"></div>
+
+        <span class="little-note">
+            click a memory to hear it ♡
+        </span>
+
+    </div>
+
+
+
+    <div class="lyric-cloud">
+
+
+        <article class="lyric-card" data-song="song2">
+
+            <img
+                src="assets/lyrics1.png"
+                alt="Lyrics 1"
+            >
+
+            <span class="playing-label">
+                ♫ PLAYING
+            </span>
+
+        </article>
+
+
+        <article class="lyric-card" data-song="song6">
+
+            <img
+                src="assets/lyrics2.jpg"
+                alt="Lyrics 2"
+            >
+
+            <span class="playing-label">
+                ♫ PLAYING
+            </span>
+
+        </article>
+
+
+        <article class="lyric-card" data-song="song4">
+
+            <img
+                src="assets/lyrics3.jpg"
+                alt="Lyrics 3"
+            >
+
+            <span class="playing-label">
+                ♫ PLAYING
+            </span>
+
+        </article>
+
+
+        <article class="lyric-card" data-song="song5">
+
+            <img
+                src="assets/lyrics4.jpg"
+                alt="Lyrics 4"
+            >
+
+            <span class="playing-label">
+                ♫ PLAYING
+            </span>
+
+        </article>
+
+
+        <article class="lyric-card" data-song="song3">
+
+            <img
+                src="assets/lyrics5.jpg"
+                alt="Lyrics 5"
+            >
+
+            <span class="playing-label">
+                ♫ PLAYING
+            </span>
+
+        </article>
+
+
+        <article class="lyric-card" data-song="song13">
+
+            <img
+                src="assets/lyrics6.jpg"
+                alt="Lyrics 6"
+            >
+
+            <span class="playing-label">
+                ♫ PLAYING
+            </span>
+
+        </article>
+
+
+        <article class="lyric-card" data-song="song8">
+
+            <img
+                src="assets/lyrics7.jpg"
+                alt="Lyrics 7"
+            >
+
+            <span class="playing-label">
+                ♫ PLAYING
+            </span>
+
+        </article>
+
+
+        <article class="lyric-card" data-song="song10">
+
+            <img
+                src="assets/lyrics8.jpg"
+                alt="Lyrics 8"
+            >
+
+            <span class="playing-label">
+                ♫ PLAYING
+            </span>
+
+        </article>
+
+
+        <article class="lyric-card" data-song="song11">
+
+            <img
+                src="assets/lyrics9.jpg"
+                alt="Lyrics 9"
+            >
+
+            <span class="playing-label">
+                ♫ PLAYING
+            </span>
+
+        </article>
+
+
+        <article class="lyric-card" data-song="song9">
+
+            <img
+                src="assets/lyrics10.jpg"
+                alt="Lyrics 10"
+            >
+
+            <span class="playing-label">
+                ♫ PLAYING
+            </span>
+
+        </article>
+
+
+    </div>
+
+
+    <div class="wall-doodle heart-one">♡</div>
+    <div class="wall-doodle heart-two">♡</div>
+    <div class="wall-doodle heart-three">♡</div>
+
+    <div class="wall-doodle star-one">✦</div>
+    <div class="wall-doodle star-two">☆</div>
+    <div class="wall-doodle star-three">✧</div>
+
+    <div class="wall-doodle flower-one">✿</div>
+    <div class="wall-doodle flower-two">❀</div>
+
+    <div class="wall-doodle moon-one">☾</div>
+
+
+    <p class="bottom-note">
+        some songs are just memories wearing headphones ♡
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     BIRTHDAY LETTER / ENVELOPE
+===================================================== -->
+
+<section id="birthdayChapter" class="birthday-chapter">
+
+
+    <div class="birthday-chapter-label">
+        CHAPTER III
+    </div>
+
+
+    <div class="birthday-doodle b-heart-one">♡</div>
+    <div class="birthday-doodle b-heart-two">♡</div>
+    <div class="birthday-doodle b-star-one">☆</div>
+    <div class="birthday-doodle b-star-two">✦</div>
+    <div class="birthday-doodle b-flower-one">✿</div>
+    <div class="birthday-doodle b-flower-two">❀</div>
+    <div class="birthday-doodle b-moon">☾</div>
+
+
+
+    <div id="mailOpening" class="mail-opening">
+
+        <div class="mail-icon">
+            ♡
+        </div>
+
+        <h1>
+            PULL OUT THE LETTER
+        </h1>
+
+        <div class="pink-underline"></div>
+
+        <p>
+            something special is waiting for you ♡
+        </p>
+
+    </div>
+
+
+
+    <div
+        id="birthdayEnvelopeWrap"
+        class="birthday-envelope-wrap"
+    >
+
+        <div id="birthdayEnvelope" class="birthday-envelope">
+
+            <div class="envelope-back"></div>
+
+            <div class="birthday-photo-letter">
+
+                <img
+                    src="assets/birthday.png"
+                    alt="Birthday letter"
+                >
+
+            </div>
+
+            <div class="envelope-front"></div>
+
+            <div class="envelope-flap"></div>
+
+        </div>
+
+
+        <button
+            id="pullLetterButton"
+            class="pull-letter-button"
+        >
+            pull out the letter ↑
+        </button>
+
+    </div>
+
+
+
+    <div id="letterFullscreen" class="letter-fullscreen">
+
+        <button
+            id="closeLetter"
+            class="close-letter"
+        >
+            ×
+        </button>
+
+
+        <div class="large-letter-container">
+
+            <img
+                src="assets/birthday.png"
+                alt="Birthday letter"
+                class="large-birthday-image"
+            >
+
+        </div>
+
+
+        <div class="letter-bottom-note">
+            favourite chaos ♡
+        </div>
+
+
+        <button
+            id="birthdayNextButton"
+            class="birthday-next-button"
+        >
+            continue the mission →
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CATS VIDEO
+===================================================== -->
+
+<section
+    id="catsVideoChapter"
+    class="cats-video-chapter"
+>
+
+    <div class="video-chapter-doodle video-heart">
+        ♡
+    </div>
+
+    <div class="video-chapter-doodle video-star">
+        ✦
+    </div>
+
+    <div class="video-chapter-doodle video-flower">
+        ✿
+    </div>
+
+
+    <div class="cats-video-content">
+
+        <p class="video-small">
+            ONE LAST LITTLE THING
+        </p>
+
+        <h2>
+            obviously,
+            <em>there had to be cats.</em>
+        </h2>
+
+
+        <div class="cats-video-frame">
+
+            <video
+                id="catsVideo"
+                class="cats-video"
+                playsinline
+                preload="auto"
+                muted
+            >
+
+                <source
+                    src="assets/catsvideo1.mp4"
+                    type="video/mp4"
+                >
+
+            </video>
+
+        </div>
+
+
+        <p class="video-caption">
+            ♡
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     THREE CATS
+===================================================== -->
+
+
+<section id="catsPage" class="cats-page">
+
+    <div class="cats-click-instruction">
+        click on each once ♡
+    </div>
+
+
+    <div class="cats-doodle cats-heart-one">♡</div>
+    <div class="cats-doodle cats-heart-two">♡</div>
+    <div class="cats-doodle cats-star-one">✦</div>
+    <div class="cats-doodle cats-star-two">☆</div>
+    <div class="cats-doodle cats-flower-one">✿</div>
+
+
+    <div class="cats-container">
+
+        <img
+            src="assets/cats.png"
+            class="cats-image"
+            alt="Three birthday cats"
+        >
+
+
+        <!-- CAT 1 -->
+
+        <button
+            class="cat-button cat-one"
+            data-cat-page="flowerPage"
+            aria-label="First cat"
+        ></button>
+
+
+        <!-- CAT 2 -->
+
+        <button
+            class="cat-button cat-two"
+            data-cat-page="cakePage"
+            aria-label="Second cat"
+        ></button>
+
+
+        <!-- CAT 3 -->
+
+        <button
+            class="cat-button cat-three"
+            data-cat-page="catPage3"
+            aria-label="Third cat"
+        ></button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CAT 1
+===================================================== -->
+
+<!-- =====================================================
+     CAT 1 — FLOWERS
+===================================================== -->
+
+<section
+    id="flowerPage"
+    class="flower-page"
+>
+
+    <button
+        class="cat-back-button flower-back"
+        data-back="catsPage"
+        type="button"
+    >
+        ←
+    </button>
+
+
+    <div
+        class="flower-petal-layer"
+        aria-hidden="true"
+    >
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </div>
+
+
+    <div class="flower-page-content">
+
+
+        <div class="flower-grid">
+
+
+            <article class="flower-card">
+
+                <div class="flower-holder">
+
+                    <img
+                        src="assets/flower1.png"
+                        class="flower-image"
+                        alt="Flower one"
+                    >
+
+                </div>
+
+                <div class="flower-caption">
+                    To live, to love, to hope
+                </div>
+
+            </article>
+
+
+            <article class="flower-card">
+
+                <div class="flower-holder">
+
+                    <img
+                        src="assets/flower2.png"
+                        class="flower-image"
+                        alt="Flower two"
+                    >
+
+                </div>
+
+                <div class="flower-caption">
+                    to the stars through hardship
+                </div>
+
+            </article>
+
+
+            <article class="flower-card">
+
+                <div class="flower-holder">
+
+                    <img
+                        src="assets/flower3.png"
+                        class="flower-image"
+                        alt="Flower three"
+                    >
+
+                </div>
+
+                <div class="flower-caption">
+                    whatever will be, will be
+                </div>
+
+            </article>
+
+
+            <article class="flower-card">
+
+                <div class="flower-holder">
+
+                    <img
+                        src="assets/flower4.png"
+                        class="flower-image"
+                        alt="Flower four"
+                    >
+
+                </div>
+
+                <div class="flower-caption">
+                    to the stars and the abyss
+                </div>
+
+            </article>
+
+
+            <article class="flower-card">
+
+                <div class="flower-holder">
+
+                    <img
+                        src="assets/flower5.png"
+                        class="flower-image"
+                        alt="Flower five"
+                    >
+
+                </div>
+
+                <div class="flower-caption">
+                    indelible
+                </div>
+
+            </article>
+
+
+        </div>
+
+
+        <div class="flower-lyrics-wall">
+            <span>♡</span>
+        </div>
+
+
+        <p class="flower-final-message">
+            next tym when i ask you what's you favourite flowers,
+            be sure you know
+        </p>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CAT 2 — CAKE
+
+
+
+<!-- =====================================================
+     CAT 2 — CAKE
+===================================================== -->
+
+<section id="cakePage" class="cake-page">
+
+
+    <button
+        class="cat-back-button cake-back"
+        data-back="catsPage"
+    >
+        ←
+    </button>
+
+
+    <div class="cake-decoration flower-left">
+        ✿
+    </div>
+
+    <div class="cake-decoration flower-right">
+        ✿
+    </div>
+
+    <div class="cake-decoration heart-left">
+        ♡
+    </div>
+
+    <div class="cake-decoration heart-right">
+        ♡
+    </div>
+
+
+    <div class="cake-content">
+
+        <p class="cake-small-title">
+            A LITTLE BIRTHDAY WISH
+        </p>
+
+
+        <h2>
+            MAKE A WISH <em>BUB</em>
+        </h2>
+
+
+        <div class="cake-line"></div>
+
+
+        <div class="cake-image-wrap">
+
+            <img
+                src="assets/cake.png"
+                class="cake-image"
+                alt="Birthday cake"
+            >
+
+        </div>
+
+
+        <button
+            id="blowButton"
+            class="blow-button"
+        >
+            Blow ♡
+        </button>
+
+
+        <p class="blow-note">
+            make a wish first...
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     BIRTHDAY NOTE
+     
+     birthdaynote.png = CENTER
+     bestie1.jpg = LEFT
+     bestie2.jpg = RIGHT
+===================================================== -->
+
+<section
+    id="birthdayNotePage"
+    class="birthday-note-page"
+>
+
+
+    <button
+        id="noteBackButton"
+        class="cat-back-button"
+    >
+        ←
+    </button>
+
+
+    <div class="birthday-note-scene">
+
+
+        <!-- LEFT BESTIE -->
+
+        <div class="bestie-side bestie-left">
+
+            <canvas
+                id="bestieCanvas1"
+                class="bestie-cutout"
+            ></canvas>
+
+        </div>
+
+
+
+        <!-- CENTER NOTE -->
+
+        <div class="birthday-note-center">
+
+            <div class="note-glow"></div>
+
+            <img
+                src="assets/birthdaynote.png"
+                alt="Birthday note"
+                class="birthday-note-image"
+            >
+
+        </div>
+
+
+
+        <!-- RIGHT BESTIE -->
+
+        <div class="bestie-side bestie-right">
+
+            <canvas
+                id="bestieCanvas2"
+                class="bestie-cutout"
+            ></canvas>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="note-page-caption">
+        ♡
+    </div>
+
+
+    <div class="note-doodle note-flower-left">
+        ✿
+    </div>
+
+    <div class="note-doodle note-flower-right">
+        ❀
+    </div>
+
+    <div class="note-doodle note-star-left">
+        ☆
+    </div>
+
+    <div class="note-doodle note-star-right">
+        ✦
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CAT 3
+     
+     ROSES.JPG REMOVED
+===================================================== -->
+
+<section
+    id="catPage3"
+    class="individual-cat-page last-message-page"
+>
+
+
+    <button
+        class="cat-back-button"
+        data-back="catsPage"
+        type="button"
+    >
+        ←
+    </button>
+
+
+    <div class="last-page-content">
+
+
+        <div class="last-page-photo">
+
+            <img
+                src="assets/me.png"
+                alt="Me"
+            >
+
+        </div>
+
+
+        <div class="last-page-message">
+
+
+            <p class="last-page-eyebrow">
+                ONE MORE LITTLE THING
+            </p>
+
+
+            <h2>
+                JUST
+                <em>BECAUSE.</em>
+            </h2>
+
+
+            <div class="cat-line"></div>
+
+
+            <ol class="last-page-list">
+
+                <li>
+                    Kelu and his mom misses u.
+                </li>
+
+                <li>
+                    Its physical, totally.
+                </li>
+
+                <li>
+                    Contact me.
+                </li>
+
+                <li>
+                    Don't come to me and say anything mean.
+                </li>
+
+                <li>
+                    Ik you manipulate me but still I do miss u at Thapar cuz people here are more manipulative and bad.
+                </li>
+
+                <li>
+                    How about I come and stay with you for a while? I mean its totally on you.
+                </li>
+
+                <li>
+                    How about you just meet me soon.
+                </li>
+
+                <li>
+                    Not disturbing you though.
+                </li>
+
+                <li>
+                    Ik its not perfect but it took me a while to make it.
+                </li>
+
+                <li>
+                    Accept when I appreciate you.
+                </li>
+
+                <li>
+                    You might be dumb and insolent, but not useless or meaningless in everyone's life.
+                </li>
+
+            </ol>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     AUDIO
+
+
+
+<!-- =====================================================
+     AUDIO
+===================================================== -->
+
+<audio id="song1" preload="auto">
+
+    <source
+        src="assets/song1.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<audio id="song2" preload="metadata">
+
+    <source
+        src="assets/song2.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<audio id="song3" preload="metadata">
+
+    <source
+        src="assets/song3.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<audio id="song4" preload="metadata">
+
+    <source
+        src="assets/song4.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<audio id="song5" preload="metadata">
+
+    <source
+        src="assets/song5.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<audio id="song6" preload="metadata">
+
+    <source
+        src="assets/song6.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<audio id="song8" preload="metadata">
+
+    <source
+        src="assets/song8.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<audio id="song9" preload="metadata">
+
+    <source
+        src="assets/song9.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<audio id="song10" preload="metadata">
+
+    <source
+        src="assets/song10.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<audio id="song11" preload="metadata">
+
+    <source
+        src="assets/song11.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<audio id="song13" preload="metadata">
+
+    <source
+        src="assets/song13.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<!-- BIRTHDAY SONG — CONTINUES -->
+
+<audio
+    id="birthdaySong"
+    preload="auto"
+    loop
+>
+
+    <source
+        src="assets/birthday song.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+
+<script src="script.js"></script>
+
+</main>
+
+
+<script id="cat-page-navigation-override">
+(function () {
+    function openCatPage(pageId) {
+        const catsPage = document.getElementById("catsPage");
+        const pages = [
+            document.getElementById("flowerPage"),
+            document.getElementById("cakePage"),
+            document.getElementById("birthdayNotePage"),
+            document.getElementById("catPage3")
+        ];
+
+        const target = document.getElementById(pageId);
+        if (!target) return;
+
+        pages.forEach(function (page) {
+            if (!page) return;
+            page.classList.remove("active");
+            page.style.display = "none";
+        });
+
+        if (catsPage) {
+            catsPage.classList.remove("active");
+            catsPage.style.display = "none";
+        }
+
+        target.classList.add("active");
+        target.style.display = "block";
+
+        window.scrollTo(0, 0);
+    }
+
+    function returnToCats() {
+        const catsPage = document.getElementById("catsPage");
+
+        [
+            document.getElementById("flowerPage"),
+            document.getElementById("cakePage"),
+            document.getElementById("birthdayNotePage"),
+            document.getElementById("catPage3")
+        ].forEach(function (page) {
+            if (!page) return;
+            page.classList.remove("active");
+            page.style.display = "none";
+        });
+
+        if (catsPage) {
+            catsPage.style.display = "";
+            catsPage.classList.add("active");
+        }
+
+        window.scrollTo(0, 0);
+    }
+
+    document.addEventListener("click", function (event) {
+        const cat = event.target.closest("#catsPage .cat-button");
+        if (!cat) return;
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        const destination = cat.getAttribute("data-cat-page");
+        if (destination) openCatPage(destination);
+    }, true);
+
+    document.addEventListener("click", function (event) {
+        const back = event.target.closest(
+            "#flowerPage .cat-back-button, " +
+            "#cakePage .cat-back-button, " +
+            "#birthdayNotePage .cat-back-button, " +
+            "#catPage3 .cat-back-button"
+        );
+
+        if (!back) return;
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        returnToCats();
+    }, true);
+})();
+</script>
+
+
+<script id="cake-note-navigation-fix-js">
+(function () {
+
+    /*
+     * Remember the slideshow position while the user moves
+     * through the later chapters. This does NOT change the
+     * first visit: the site still starts on slide 1.
+     */
+    const SLIDE_KEY = "missionPineappleLastSlide";
+
+    function rememberCurrentSlide() {
+        const slides = Array.from(
+            document.querySelectorAll("#story .slide")
+        );
+
+        const activeIndex = slides.findIndex(function (slide) {
+            return slide.classList.contains("active");
+        });
+
+        if (activeIndex >= 0) {
+            sessionStorage.setItem(
+                SLIDE_KEY,
+                String(activeIndex)
+            );
+        }
+    }
+
+    function restoreRememberedSlide() {
+        const slides = Array.from(
+            document.querySelectorAll("#story .slide")
+        );
+
+        const saved = sessionStorage.getItem(SLIDE_KEY);
+
+        if (
+            saved === null ||
+            !slides.length
+        ) {
+            return;
+        }
+
+        const index = Number(saved);
+
+        if (
+            !Number.isInteger(index) ||
+            index < 0 ||
+            index >= slides.length
+        ) {
+            return;
+        }
+
+        slides.forEach(function (slide, i) {
+            slide.classList.toggle(
+                "active",
+                i === index
+            );
+        });
+
+        const progressFill =
+            document.getElementById("progressFill");
+
+        if (progressFill && slides.length > 1) {
+            progressFill.style.width =
+                ((index + 1) / slides.length * 100) + "%";
+        }
+    }
+
+
+    /*
+     * Keep the current slide remembered whenever the active
+     * slide changes.
+     */
+    function watchSlides() {
+        const story = document.getElementById("story");
+
+        if (!story) return;
+
+        const observer = new MutationObserver(
+            function () {
+                rememberCurrentSlide();
+            }
+        );
+
+        observer.observe(
+            story,
+            {
+                subtree: true,
+                attributes: true,
+                attributeFilter: ["class"]
+            }
+        );
+    }
+
+
+    /*
+     * BLOW -> BIRTHDAY NOTE
+     *
+     * This uses capture phase so the button still works even
+     * if an older script has a generic click handler.
+     */
+    function installBlowButton() {
+
+        const blowButton =
+            document.getElementById("blowButton");
+
+        const cakePage =
+            document.getElementById("cakePage");
+
+        const notePage =
+            document.getElementById("birthdayNotePage");
+
+        if (
+            !blowButton ||
+            !cakePage ||
+            !notePage
+        ) {
+            return;
+        }
+
+
+        blowButton.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+                event.stopImmediatePropagation();
+
+                rememberCurrentSlide();
+
+
+                cakePage.classList.remove(
+                    "active"
+                );
+
+                cakePage.style.display =
+                    "none";
+
+
+                notePage.classList.add(
+                    "active"
+                );
+
+                notePage.style.display =
+                    "block";
+
+
+                window.scrollTo(
+                    0,
+                    0
+                );
+
+            },
+            true
+        );
+
+    }
+
+
+    /*
+     * Back from the birthday-note page returns to the cake
+     * page rather than resetting the whole website.
+     */
+    function installNoteBackButton() {
+
+        const backButton =
+            document.getElementById(
+                "noteBackButton"
+            );
+
+        const notePage =
+            document.getElementById(
+                "birthdayNotePage"
+            );
+
+        const cakePage =
+            document.getElementById(
+                "cakePage"
+            );
+
+        if (
+            !backButton ||
+            !notePage ||
+            !cakePage
+        ) {
+            return;
+        }
+
+
+        backButton.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+                event.stopImmediatePropagation();
+
+
+                notePage.classList.remove(
+                    "active"
+                );
+
+                notePage.style.display =
+                    "none";
+
+
+                cakePage.classList.add(
+                    "active"
+                );
+
+                cakePage.style.display =
+                    "flex";
+
+
+                window.scrollTo(
+                    0,
+                    0
+                );
+
+            },
+            true
+        );
+
+    }
+
+
+    /*
+     * Prevent the old generic "back to cats" handler from
+     * hijacking the note page.
+     */
+    function install() {
+
+        restoreRememberedSlide();
+
+        watchSlides();
+
+        installBlowButton();
+
+        installNoteBackButton();
+
+    }
+
+
+    if (
+        document.readyState ===
+        "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            install
+        );
+
+    } else {
+
+        install();
+
+    }
+
+})();
+</script>
+
+
+<script id="cat-back-no-reset-fix-js">
+(function () {
+
+    const CAT_PAGES = [
+        "flowerPage",
+        "cakePage",
+        "birthdayNotePage",
+        "catPage3"
+    ];
+
+    function page(id) {
+        return document.getElementById(id);
+    }
+
+    function hideCatPages() {
+        CAT_PAGES.forEach(function (id) {
+            const el = page(id);
+            if (!el) return;
+
+            el.classList.remove("active");
+            el.style.display = "none";
+        });
+    }
+
+    /*
+     * This is deliberately a capture-phase handler.
+     * The old script.js has a generic back/navigation
+     * handler. We stop it BEFORE it gets a chance to
+     * send the user back to the slideshow.
+     */
+    function goBackToCats(event) {
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        hideCatPages();
+
+        const cats = page("catsPage");
+
+        if (cats) {
+            cats.style.display = "";
+            cats.classList.add("active");
+        }
+
+        /*
+         * Do NOT touch #story or its slides.
+         * The slideshow remains exactly where it was.
+         */
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "instant"
+        });
+
+        return false;
+    }
+
+    function installCatBackButtons() {
+
+        const selectors = [
+            "#flowerPage .cat-back-button",
+            "#cakePage .cat-back-button",
+            "#birthdayNotePage .cat-back-button",
+            "#catPage3 .cat-back-button"
+        ];
+
+        document
+            .querySelectorAll(selectors.join(","))
+            .forEach(function (button) {
+
+                button.addEventListener(
+                    "click",
+                    goBackToCats,
+                    true
+                );
+            });
+    }
+
+
+    /*
+     * The previous fix handled the note page separately.
+     * Reinstall it here so its back button also returns
+     * to the cake when the user is on the note page.
+     */
+    function installNoteBack() {
+
+        const button = page("noteBackButton");
+        const note = page("birthdayNotePage");
+        const cake = page("cakePage");
+
+        if (!button || !note || !cake) return;
+
+        button.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+                event.stopImmediatePropagation();
+
+                note.classList.remove("active");
+                note.style.display = "none";
+
+                cake.classList.add("active");
+                cake.style.display = "flex";
+
+                window.scrollTo(0, 0);
+            },
+            true
+        );
+    }
+
+
+    /*
+     * Reassert the active slide after returning from a cat
+     * page. We read the currently-active slide; we NEVER
+     * force slide 1.
+     */
+    function protectSlidePosition() {
+
+        const story = page("story");
+        if (!story) return;
+
+        const slides = Array.from(
+            story.querySelectorAll(".slide")
+        );
+
+        if (!slides.length) return;
+
+        const activeIndex = slides.findIndex(
+            function (slide) {
+                return slide.classList.contains("active");
+            }
+        );
+
+        if (activeIndex < 0) return;
+
+        sessionStorage.setItem(
+            "missionPineappleLastSlide",
+            String(activeIndex)
+        );
+    }
+
+
+    function install() {
+        installCatBackButtons();
+        installNoteBack();
+        protectSlidePosition();
+    }
+
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            install
+        );
+    } else {
+        install();
+    }
+
+})();
+</script>
+
+</body>
+
+</html>

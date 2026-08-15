@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mission Pineapple</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="cats.css">
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     BACKGROUND DOODLES
+========================= -->
+
+<div class="doodle heart heart1">♡</div>
+<div class="doodle heart heart2">♡</div>
+<div class="doodle heart heart3">♡</div>
+
+<div class="doodle star star1">✦</div>
+<div class="doodle star star2">☆</div>
+<div class="doodle star star3">✧</div>
+
+<div class="doodle flower flower1">✿</div>
+<div class="doodle flower flower2">❀</div>
+
+<div class="doodle moon">☾</div>
+
+
+<!-- =========================
+     MAIN CAT PAGE
+========================= -->
+
+<section
+    id="catsPage"
+    class="page active-page"
+>
+
+    <div class="cats-container">
+
+        <img
+            src="assets/cats.png"
+            class="cats-image"
+            alt="Three birthday cats"
+        >
+
+
+        <!-- LEFT CAT -->
+
+        <button
+            class="cat-button cat1"
+            data-cat="catPage1"
+            aria-label="First cat"
+        ></button>
+
+
+        <!-- MIDDLE CAT -->
+
+        <button
+            class="cat-button cat2"
+            data-cat="catPage2"
+            aria-label="Second cat"
+        ></button>
+
+
+        <!-- RIGHT CAT -->
+
+        <button
+            class="cat-button cat3"
+            data-cat="catPage3"
+            aria-label="Third cat"
+        ></button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CAT 1 PAGE
+========================= -->
+
+<section
+    id="catPage1"
+    class="cat-detail-page"
+>
+
+    <button class="back-button">
+        ←
+    </button>
+
+    <div class="cat-detail-content">
+
+        <p class="chapter-small">
+            A LITTLE MEMORY
+        </p>
+
+        <h1>
+            SOMETHING
+            <em>SPECIAL.</em>
+        </h1>
+
+        <div class="pink-line"></div>
+
+        <p class="cat-message">
+            we'll put something here later ♡
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CAT 2 PAGE
+========================= -->
+
+<section
+    id="catPage2"
+    class="cat-detail-page"
+>
+
+    <button class="back-button">
+        ←
+    </button>
+
+    <div class="cat-detail-content">
+
+        <p class="chapter-small">
+            ANOTHER MEMORY
+        </p>
+
+        <h1>
+            FOR MY
+            <em>FAVOURITE.</em>
+        </h1>
+
+        <div class="pink-line"></div>
+
+        <p class="cat-message">
+            we'll put something here later ♡
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     CAT 3 PAGE
+========================= -->
+
+<section
+    id="catPage3"
+    class="cat-detail-page"
+>
+
+    <button class="back-button">
+        ←
+    </button>
+
+    <div class="cat-detail-content">
+
+        <p class="chapter-small">
+            ONE MORE THING
+        </p>
+
+        <h1>
+            MY LITTLE
+            <em>CHAOS.</em>
+        </h1>
+
+        <div class="pink-line"></div>
+
+        <p class="cat-message">
+            we'll put something here later ♡
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ONE SINGLE AUDIO
+========================= -->
+
+<audio
+    id="birthdaySong"
+    src="assets/birthday song.mp3"
+    preload="auto"
+    loop
+></audio>
+
+
+<script src="cats.js"></script>
+
+</body>
+
+</html>
