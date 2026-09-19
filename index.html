@@ -1277,6 +1277,170 @@
 }
 </style>
 
+
+<style id="mission-pineapple-cats-repair">
+/* =========================================================
+   CATS VIDEO + THREE CATS REPAIR
+   Only fixes the cats-video layout and cat click areas.
+========================================================= */
+
+/* Keep the existing cats-video chapter centered instead of
+   inheriting a sideways/left-aligned layout. */
+#catsVideoChapter {
+    position: relative !important;
+    width: 100vw !important;
+    min-height: 100vh !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#catsVideoChapter .cats-video-content {
+    width: min(1100px, 92vw) !important;
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+    padding: 70px 20px 45px !important;
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    text-align: center !important;
+}
+
+#catsVideoChapter .cats-video-frame {
+    width: min(1000px, 90vw) !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+}
+
+#catsVideoChapter .cats-video {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 68vh !important;
+    object-fit: contain !important;
+    margin: 0 auto !important;
+}
+
+/* The three-cat chapter must remain a real viewport chapter. */
+#catsPage {
+    position: relative !important;
+    width: 100vw !important;
+    min-height: 100vh !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+#catsPage .cats-container {
+    position: relative !important;
+    width: min(1100px, 90vw) !important;
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+}
+
+#catsPage .cats-image {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 auto !important;
+}
+
+/* Decorative text/doodles must never sit over the click zones. */
+#catsPage .cats-doodle,
+#catsPage .cats-click-instruction {
+    pointer-events: none !important;
+}
+
+/* Three transparent click zones, one over each cat. */
+#catsPage .cat-button {
+    position: absolute !important;
+    top: 0 !important;
+    height: 100% !important;
+
+    display: block !important;
+    z-index: 100 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+
+    background: transparent !important;
+    cursor: pointer !important;
+    opacity: 0 !important;
+
+    appearance: none !important;
+    -webkit-appearance: none !important;
+}
+
+#catsPage .cat-button.cat-one {
+    left: 0 !important;
+    width: 33.333333% !important;
+}
+
+#catsPage .cat-button.cat-two {
+    left: 33.333333% !important;
+    width: 33.333334% !important;
+}
+
+#catsPage .cat-button.cat-three {
+    left: 66.666667% !important;
+    width: 33.333333% !important;
+}
+
+/* Continue button for the existing cats video. */
+#catsVideoContinue {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    margin: 20px auto 0;
+    padding: 12px 25px;
+
+    border: 1px solid rgba(162,77,102,.35);
+    border-radius: 30px;
+
+    background: rgba(255,248,244,.92);
+    color: #a24d66;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+}
+
+#catsVideoContinue.visible {
+    display: inline-flex !important;
+}
+
+@media (max-width: 700px) {
+    #catsVideoChapter .cats-video-content {
+        width: 94vw !important;
+        padding: 65px 10px 35px !important;
+    }
+
+    #catsVideoChapter .cats-video-frame {
+        width: 94vw !important;
+    }
+
+    #catsPage .cats-container {
+        width: 94vw !important;
+    }
+}
+</style>
+
 </head>
 
 
@@ -1923,6 +2087,13 @@
         <p class="video-caption">
             ♡
         </p>
+
+        <button
+            id="catsVideoContinue"
+            type="button"
+        >
+            continue to the cats →
+        </button>
 
     </div>
 
@@ -3218,6 +3389,65 @@
         install();
     }
 
+})();
+</script>
+
+
+<script id="mission-pineapple-cats-repair-js">
+(function () {
+    function showThreeCats() {
+        var videoPage = document.getElementById("catsVideoChapter");
+        var catsPage = document.getElementById("catsPage");
+        var video = document.getElementById("catsVideo");
+
+        if (video) {
+            video.pause();
+        }
+
+        if (videoPage) {
+            videoPage.classList.remove("active");
+            videoPage.style.display = "none";
+        }
+
+        if (catsPage) {
+            catsPage.classList.add("active");
+            catsPage.style.display = "flex";
+        }
+
+        window.scrollTo(0, 0);
+    }
+
+    function install() {
+        var video = document.getElementById("catsVideo");
+        var button = document.getElementById("catsVideoContinue");
+
+        if (!button) return;
+
+        /* Show the button when the cats video finishes. */
+        if (video) {
+            video.addEventListener("ended", function () {
+                button.classList.add("visible");
+            });
+
+            /* If the video cannot load, don't trap the user. */
+            video.addEventListener("error", function () {
+                button.classList.add("visible");
+            });
+        }
+
+        /* Keep it usable even if the user wants to continue early. */
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            showThreeCats();
+        }, true);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", install);
+    } else {
+        install();
+    }
 })();
 </script>
 
