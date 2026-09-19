@@ -850,22 +850,172 @@
 </style>
 
 
-<style id="final-video-page-only">
-.final-video-button{display:inline-flex;align-items:center;justify-content:center;margin-top:28px;padding:12px 25px;border:1px solid rgba(162,77,102,.35);border-radius:30px;background:rgba(255,248,244,.8);color:#a24d66;font-family:"DM Sans",sans-serif;font-size:13px;letter-spacing:1px;cursor:pointer;transition:transform .3s ease,background .3s ease,box-shadow .3s ease}
-.final-video-button:hover{transform:translateY(-3px);background:rgba(255,255,255,.95);box-shadow:0 8px 20px rgba(105,45,65,.12)}
-#finalVideoPage{position:fixed!important;inset:0!important;width:100vw;height:100vh;display:none;overflow-y:auto;overflow-x:hidden;z-index:6000!important;background:radial-gradient(circle at 15% 15%,rgba(255,255,255,.75),transparent 30%),radial-gradient(circle at 85% 80%,rgba(255,171,199,.35),transparent 32%),linear-gradient(135deg,#f8dce5 0%,#f3c5d3 50%,#fbe8ed 100%);color:#633541}
-#finalVideoPage.active{display:block!important}
-.final-video-content{width:min(1100px,92%);min-height:100vh;margin:0 auto;padding:70px 20px 55px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.final-video-eyebrow{margin:0 0 12px;font-family:"DM Sans",sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:#a24d66}
-.final-video-content h2{margin:0;font-family:"Playfair Display",serif;font-size:clamp(48px,6vw,76px);line-height:1;font-weight:500;color:#633541}
-.final-video-content h2 em{color:#c25573}
-.final-video-line{width:150px;height:1px;margin:22px auto 30px;background:rgba(162,77,102,.35)}
-.final-video-frame{width:min(900px,100%);padding:10px;background:rgba(255,248,244,.8);border:1px solid rgba(162,77,102,.18);box-shadow:0 20px 45px rgba(105,45,65,.16);border-radius:5px}
-.final-video{display:block;width:100%;max-height:68vh;object-fit:contain;background:#000;border-radius:3px}
-.final-video-caption{margin:22px 0 0;font-family:"Caveat",cursive;font-size:24px;color:#b94f70}
-.final-video-back{position:fixed;top:20px;left:24px;z-index:6010;width:45px;height:45px;border:none;border-radius:50%;background:rgba(255,248,244,.85);color:#a24d66;font-size:22px;cursor:pointer;box-shadow:0 5px 18px rgba(105,45,65,.12);transition:transform .3s ease,background .3s ease}
-.final-video-back:hover{transform:translateY(-2px);background:rgba(255,255,255,.98)}
-@media(max-width:700px){.final-video-content{width:94%;padding:65px 10px 40px}.final-video-content h2{font-size:clamp(42px,12vw,60px)}.final-video-frame{padding:6px}.final-video{max-height:60vh}.final-video-caption{font-size:21px}}
+<style id="pre-cats-video-only">
+/* =====================================================
+   VIDEO BEFORE CATS VIDEO
+   This is the only new chapter added to the flow.
+===================================================== */
+
+#preCatsVideoPage {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 6000 !important;
+    box-sizing: border-box;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(255,255,255,.75), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(255,171,199,.35), transparent 32%),
+        linear-gradient(135deg, #f8dce5 0%, #f3c5d3 50%, #fbe8ed 100%);
+    color: #633541;
+}
+
+#preCatsVideoPage.active {
+    display: block !important;
+}
+
+.pre-cats-video-content {
+    width: min(1100px, 92%);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 70px 20px 55px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.pre-cats-video-eyebrow {
+    margin: 0 0 12px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #a24d66;
+}
+
+.pre-cats-video-content h2 {
+    margin: 0;
+    font-family: "Playfair Display", serif;
+    font-size: clamp(48px, 6vw, 76px);
+    line-height: 1;
+    font-weight: 500;
+    color: #633541;
+}
+
+.pre-cats-video-content h2 em {
+    color: #c25573;
+}
+
+.pre-cats-video-line {
+    width: 150px;
+    height: 1px;
+    margin: 22px auto 30px;
+    background: rgba(162,77,102,.35);
+}
+
+.pre-cats-video-frame {
+    width: min(900px, 100%);
+    padding: 10px;
+    box-sizing: border-box;
+    background: rgba(255,248,244,.8);
+    border: 1px solid rgba(162,77,102,.18);
+    box-shadow: 0 20px 45px rgba(105,45,65,.16);
+    border-radius: 5px;
+}
+
+#preCatsVideo {
+    display: block;
+    width: 100%;
+    max-height: 68vh;
+    object-fit: contain;
+    background: #000;
+    border-radius: 3px;
+}
+
+.pre-cats-video-caption {
+    margin: 22px 0 0;
+    font-family: "Caveat", cursive;
+    font-size: 24px;
+    color: #b94f70;
+}
+
+#preCatsVideoContinue {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-top: 22px;
+    padding: 12px 25px;
+    border: 1px solid rgba(162,77,102,.35);
+    border-radius: 30px;
+    background: rgba(255,248,244,.9);
+    color: #a24d66;
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform .3s ease, background .3s ease, box-shadow .3s ease;
+}
+
+#preCatsVideoContinue.visible {
+    display: inline-flex;
+}
+
+#preCatsVideoContinue:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,.98);
+    box-shadow: 0 8px 20px rgba(105,45,65,.12);
+}
+
+.pre-cats-video-back {
+    position: fixed;
+    top: 20px;
+    left: 24px;
+    z-index: 6010;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,248,244,.85);
+    color: #a24d66;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 5px 18px rgba(105,45,65,.12);
+    transition: transform .3s ease, background .3s ease;
+}
+
+.pre-cats-video-back:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,.98);
+}
+
+@media (max-width: 700px) {
+    .pre-cats-video-content {
+        width: 94%;
+        padding: 65px 10px 40px;
+    }
+
+    .pre-cats-video-content h2 {
+        font-size: clamp(42px, 12vw, 60px);
+    }
+
+    .pre-cats-video-frame {
+        padding: 6px;
+    }
+
+    #preCatsVideo {
+        max-height: 60vh;
+    }
+
+    .pre-cats-video-caption {
+        font-size: 21px;
+    }
+}
 </style>
 
 <style id="cake-only-fix">
@@ -1654,6 +1804,69 @@
 
 
 <!-- =====================================================
+     VIDEO BEFORE CATS VIDEO
+===================================================== -->
+
+<section
+    id="preCatsVideoPage"
+    class="pre-cats-video-page"
+>
+
+    <button
+        id="preCatsVideoBack"
+        class="pre-cats-video-back"
+        type="button"
+        aria-label="Back to birthday letter"
+    >
+        ←
+    </button>
+
+    <div class="pre-cats-video-content">
+
+        <p class="pre-cats-video-eyebrow">
+            ONE LAST LITTLE THING
+        </p>
+
+        <h2>
+            before the <em>cats.</em>
+        </h2>
+
+        <div class="pre-cats-video-line"></div>
+
+        <div class="pre-cats-video-frame">
+
+            <video
+                id="preCatsVideo"
+                controls
+                playsinline
+                preload="metadata"
+            >
+                <source
+                    src="assets/video.mp4"
+                    type="video/mp4"
+                >
+                Your browser does not support the video tag.
+            </video>
+
+        </div>
+
+        <button
+            id="preCatsVideoContinue"
+            type="button"
+        >
+            continue to the cats →
+        </button>
+
+        <p class="pre-cats-video-caption">
+            ♡
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
      CATS VIDEO
 ===================================================== -->
 
@@ -2211,7 +2424,6 @@
 
             </ol>
 
-            <button id="finalVideoButton" class="final-video-button" type="button">one last thing →</button>
 
         </div>
 
@@ -2220,25 +2432,6 @@
 </section>
 
 
-
-<!-- =====================================================
-     FINAL VIDEO PAGE
-===================================================== -->
-<section id="finalVideoPage" class="final-video-page">
-    <button id="finalVideoBackButton" class="final-video-back" type="button" aria-label="Back to Me page">←</button>
-    <div class="final-video-content">
-        <p class="final-video-eyebrow">ONE LAST THING</p>
-        <h2>And this is the <em>end.</em></h2>
-        <div class="final-video-line"></div>
-        <div class="final-video-frame">
-            <video id="finalVideo" class="final-video" controls playsinline preload="metadata">
-                <source src="assets/video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        <p class="final-video-caption">♡ made with a little too much love</p>
-    </div>
-</section>
 
 
 <!-- =====================================================
@@ -2886,14 +3079,145 @@
 
 })();
 </script>
+>
 
-<script id="final-video-navigation">
-(function(){
-function get(id){return document.getElementById(id)}
-function showFinalVideo(){const me=get("catPage3"),finalPage=get("finalVideoPage"),video=get("finalVideo");if(!finalPage)return;if(me){me.classList.remove("active");me.style.display="none"}finalPage.classList.add("active");finalPage.style.display="block";window.scrollTo({top:0,left:0,behavior:"instant"});if(video){video.currentTime=0;video.play().catch(function(){})}}
-function returnToMePage(){const me=get("catPage3"),finalPage=get("finalVideoPage"),video=get("finalVideo");if(video)video.pause();if(finalPage){finalPage.classList.remove("active");finalPage.style.display="none"}if(me){me.classList.add("active");me.style.display="block"}window.scrollTo({top:0,left:0,behavior:"instant"})}
-function install(){const button=get("finalVideoButton"),back=get("finalVideoBackButton");if(button)button.addEventListener("click",function(e){e.preventDefault();e.stopImmediatePropagation();showFinalVideo()},true);if(back)back.addEventListener("click",function(e){e.preventDefault();e.stopImmediatePropagation();returnToMePage()},true)}
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",install);else install();
+
+<script id="pre-cats-video-navigation">
+(function () {
+
+    function showPage(id, displayValue) {
+        var page = document.getElementById(id);
+        if (!page) return;
+        page.classList.add("active");
+        page.style.display = displayValue || "block";
+    }
+
+    function hidePage(id) {
+        var page = document.getElementById(id);
+        if (!page) return;
+        page.classList.remove("active");
+        page.style.display = "none";
+    }
+
+    function showPreCatsVideo() {
+        var birthday = document.getElementById("birthdayChapter");
+        var preVideo = document.getElementById("preCatsVideoPage");
+        var video = document.getElementById("preCatsVideo");
+        var continueButton = document.getElementById("preCatsVideoContinue");
+
+        if (!preVideo) return;
+
+        if (birthday) {
+            birthday.classList.remove("active");
+            birthday.style.display = "none";
+        }
+
+        hidePage("catsVideoChapter");
+        hidePage("catsPage");
+
+        if (continueButton) {
+            continueButton.classList.remove("visible");
+        }
+
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+        }
+
+        showPage("preCatsVideoPage", "block");
+        window.scrollTo(0, 0);
+    }
+
+    function showCatsVideo() {
+        var preVideo = document.getElementById("preCatsVideoPage");
+        var catsVideoPage = document.getElementById("catsVideoChapter");
+        var video = document.getElementById("catsVideo");
+
+        hidePage("preCatsVideoPage");
+
+        if (catsVideoPage) {
+            catsVideoPage.classList.add("active");
+            catsVideoPage.style.display = "block";
+        }
+
+        window.scrollTo(0, 0);
+
+        if (video) {
+            video.currentTime = 0;
+            video.play().catch(function () {});
+        }
+    }
+
+    function goBackToBirthday() {
+        var preVideo = document.getElementById("preCatsVideoPage");
+        var birthday = document.getElementById("birthdayChapter");
+        var video = document.getElementById("preCatsVideo");
+
+        if (video) {
+            video.pause();
+        }
+
+        hidePage("preCatsVideoPage");
+
+        if (birthday) {
+            birthday.classList.add("active");
+            birthday.style.display = "block";
+        }
+
+        window.scrollTo(0, 0);
+    }
+
+    function install() {
+        var birthdayNext = document.getElementById("birthdayNextButton");
+        var continueButton = document.getElementById("preCatsVideoContinue");
+        var backButton = document.getElementById("preCatsVideoBack");
+        var video = document.getElementById("preCatsVideo");
+
+        /*
+         * Capture this before the existing script.js handler so the
+         * Birthday Letter now goes to our new video chapter first.
+         */
+        if (birthdayNext) {
+            birthdayNext.addEventListener("click", function (event) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                showPreCatsVideo();
+            }, true);
+        }
+
+        if (video && continueButton) {
+            video.addEventListener("ended", function () {
+                continueButton.classList.add("visible");
+            });
+
+            video.addEventListener("error", function () {
+                continueButton.classList.add("visible");
+            });
+        }
+
+        if (continueButton) {
+            continueButton.addEventListener("click", function (event) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                showCatsVideo();
+            }, true);
+        }
+
+        if (backButton) {
+            backButton.addEventListener("click", function (event) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                goBackToBirthday();
+            }, true);
+        }
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", install);
+    } else {
+        install();
+    }
+
 })();
 </script>
 
